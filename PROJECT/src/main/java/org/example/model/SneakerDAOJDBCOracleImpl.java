@@ -30,7 +30,7 @@ public class SneakerDAOJDBCOracleImpl implements DAO<Sneaker> {
         Sneaker sneaker = null;
 
         Properties props = new Properties();
-        try (FileInputStream fis = new FileInputStream("src/main/resources/connexio.properties")) {
+        try (FileInputStream fis = new FileInputStream("src/main/resources/database.properties")) {
             props.load(fis);
         } catch (IOException e) {
             throw new DAOException(19);
@@ -83,7 +83,7 @@ public class SneakerDAOJDBCOracleImpl implements DAO<Sneaker> {
         List<Sneaker> sneakers = new ArrayList<>();
 
         Properties props = new Properties();
-        try (FileInputStream fis = new FileInputStream("src/main/resources/connexio.properties")) {
+        try (FileInputStream fis = new FileInputStream("src/main/resources/database.properties")) {
             props.load(fis);
         } catch (IOException e) {
             throw new DAOException(19);
@@ -133,7 +133,7 @@ public class SneakerDAOJDBCOracleImpl implements DAO<Sneaker> {
     public void save(Sneaker obj) throws DAOException {
         //Cridem al metode per crear la taula si no existeix
         Properties props = new Properties();
-        try (FileInputStream fis = new FileInputStream("src/main/resources/connexio.properties")) {
+        try (FileInputStream fis = new FileInputStream("src/main/resources/database.properties")) {
             props.load(fis);
         } catch (IOException e) {
             throw new DAOException(19);
@@ -182,7 +182,7 @@ public class SneakerDAOJDBCOracleImpl implements DAO<Sneaker> {
     @Override
     public void update(Sneaker obj) throws DAOException {
         Properties props = new Properties();
-        try (FileInputStream fis = new FileInputStream("src/main/resources/connexio.properties")) {
+        try (FileInputStream fis = new FileInputStream("src/main/resources/database.properties")) {
             props.load(fis);
         } catch (IOException e) {
             throw new DAOException(19);
@@ -231,7 +231,7 @@ public class SneakerDAOJDBCOracleImpl implements DAO<Sneaker> {
     @Override
     public void delete(Sneaker obj) throws DAOException {
         Properties props = new Properties();
-        try (FileInputStream fis = new FileInputStream("src/main/resources/connexio.properties")) {
+        try (FileInputStream fis = new FileInputStream("src/main/resources/database.properties")) {
             props.load(fis);
         } catch (IOException e) {
             throw new DAOException(19);
@@ -266,7 +266,7 @@ public class SneakerDAOJDBCOracleImpl implements DAO<Sneaker> {
 
     //Metode per crear les taules i el trigger si no ho tenim a la base de dades
     public static void createTables() throws DAOException {
-        ResourceBundle rb = ResourceBundle.getBundle("connexio");
+        ResourceBundle rb = ResourceBundle.getBundle("database");
 
         String url = rb.getString("jdbc.url");
         String user = rb.getString("jdbc.username");
@@ -301,7 +301,7 @@ public class SneakerDAOJDBCOracleImpl implements DAO<Sneaker> {
                 }
             }
 
-            // Llama al procedimiento almacenado
+            // Cridem al procediment almacenat per crear la taula
             try (CallableStatement cst = con.prepareCall("{call crear_taula_sneakers}")) {
                 cst.execute();
             }

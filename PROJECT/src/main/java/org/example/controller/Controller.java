@@ -751,9 +751,12 @@ public class Controller implements PropertyChangeListener {
                             //En cas de que salte la excepcio, borrem el text del camp de text
                             vista.getTalla().setText("");
                             break;
-                        case 3, 4, 5, 6, 7, 8, 9, 17, 16, 15, 14, 13, 12, 11, 10, 18:
+                        case 3, 4, 5, 6, 7, 8, 9, 17, 16, 15, 14, 13, 12, 10, 18, 20:
                             JOptionPane.showMessageDialog(null,rebuda.getMessage());
                             break;
+                            case 11:
+                            JOptionPane.showMessageDialog(null,rebuda.getMessage());
+                            vista.getDataSortida().setText("");
                         case 19:
                             JOptionPane.showMessageDialog(null,rebuda.getMessage());
                             vista.getNumProducte().setText("");
